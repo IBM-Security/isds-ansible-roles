@@ -1,0 +1,13 @@
+- name: Add Hostname to host record
+  isds:
+    appliance: "{{ inventory_hostname }}"
+    username:  "{{ username }}"
+    password:  "{{ password }}"
+    lmi_port:  "{{ lmi_port }}"
+    log:       "{{ log_level }}"
+    force:     "{{ force }}"
+    action: ibmsecurity.isds.hostnames.add
+    isdsapi:
+      hostname: "{{ hostname }}"
+      ip_addr:  "{{ ip_addr }}"
+  notify: Commit Changes
