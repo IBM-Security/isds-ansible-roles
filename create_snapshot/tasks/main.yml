@@ -1,0 +1,11 @@
+- name: Snapshot of Appliance
+  isds:
+    appliance: "{{ inventory_hostname }}"
+    username:  "{{ username }}"
+    password:  "{{ password }}"
+    lmi_port:  "{{ lmi_port }}"
+    log:       "{{ log_level }}"
+    force:     "{{ force }}"
+    action: ibmsecurity.isds.snapshots.create
+    isdsapi:
+      comment: "{{ create_snapshot_comment }}"
