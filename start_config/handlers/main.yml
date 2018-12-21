@@ -29,7 +29,7 @@
     lmi_port:  "{{ port | default(omit) }}"
     log:       "{{ log_level | default(omit) }}"
     force:     "{{ force | default(omit) }}"
-    action: ibmsecurity.isds.appliance.commit_and_restart_and_wait
+    action: ibmsecurity.isds.appliance.commit_and_restart
 
 # Commit and Restart may cause LMI to restart - so wait to be safe
 - name: Await Appliance Commit LMI Response
@@ -96,3 +96,4 @@
     log:       "{{ log_level | default(omit) }}"
     force:     "{{ force | default(omit) }}"
     action: ibmsecurity.isds.base.lmi.restart_and_wait
+
