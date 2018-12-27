@@ -1,0 +1,7 @@
+# Import the product support license for the version of ISDS
+# The product support license can be obtained from IBM Passport 
+# Advantage site https://www.ibm.com/software/passportadvantage
+
+# Comment to be used for creating a snapshot file
+install_license_comment: "Automated Snapshot Before Installing Product Support License"
+install_license_file: null
