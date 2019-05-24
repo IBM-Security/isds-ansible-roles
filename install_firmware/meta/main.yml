@@ -1,0 +1,18 @@
+galaxy_info:
+  author: IFC
+  description: Role that will install a firmware into and appliance
+  company: IFC
+
+  license: Apache
+
+  min_ansible_version: 2.2
+
+  galaxy_tags:
+  - isds
+  - ibm
+  - firmware
+  - upgrade
+  - install
+
+dependencies:
+  - start_config

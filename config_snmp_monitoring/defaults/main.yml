@@ -1,0 +1,12 @@
+# Override the following values as needed
+config_snmp_monitoring_port: 161
+# Override the following values as needed for V1V2 only, set to null for V3
+config_snmp_monitoring_community: null
+# Override the following values as needed for V3 only, set to null for V1V2
+config_snmp_monitoring_securitylevel: null
+config_snmp_monitoring_securityuser: null
+config_snmp_monitoring_authprotocol: null
+config_snmp_monitoring_authpassword: null
+config_snmp_monitoring_privacyprotocol: null
+config_snmp_monitoring_privacypassword: null
+

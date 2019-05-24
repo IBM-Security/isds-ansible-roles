@@ -1,0 +1,34 @@
+- name: Configure SNMP Monitoring v1/2C
+  isds:
+    appliance: "{{ inventory_hostname }}"
+    username:  "{{ username }}"
+    password:  "{{ password }}"
+    lmi_port:  "{{ lmi_port }}"
+    log:       "{{ log_level }}"
+    force:     "{{ force }}"
+    action: ibmsecurity.isds.snmp_monitoring.set_v1v2
+    isdsapi:
+      port     : "{{ config_snmp_monitoring_port }}"
+      community: "{{ config_snmp_monitoring_community }}"
+  when: config_snmp_monitoring_community is defined and config_snmp_monitoring_community != ""
+  notify: Commit Changes
+
+- name: Configure SNMP Monitoring or V3
+  isds:
+    appliance: "{{ inventory_hostname }}"
+    username:  "{{ username }}"
+    password:  "{{ password }}"
+    lmi_port:  "{{ lmi_port }}"
+    log:       "{{ log_level }}"
+    force:     "{{ force }}"
+    action: ibmsecurity.isds.snmp_monitoring.set_v3
+    isdsapi:
+      port     : "{{ config_snmp_monitoring_port }}"
+      securityLevel: "{{ config_snmp_monitoring_securitylevel }}"
+      securityUser: "{{ config_snmp_monitoring_securityuser }}"
+      authProtocol: "{{ config_snmp_monitoring_authprotocol }}"
+      authPassword: "{{ config_snmp_monitoring_authpassword }}"
+      privacyProtocol: "{{ config_snmp_monitoring_privacyprotocol }}"
+      privacyPassword: "{{ config_snmp_monitoring_privacypassword }}"
+  when: config_snmp_monitoring_community is not defined or config_snmp_monitoring_community == ""
+  notify: Commit Changes
