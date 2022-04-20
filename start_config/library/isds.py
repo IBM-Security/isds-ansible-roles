@@ -5,7 +5,10 @@ import logging.config
 import sys
 import importlib
 from ansible.module_utils.basic import AnsibleModule
-from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import datetime
 
 from ibmsecurity.appliance.isdsappliance import ISDSAppliance
