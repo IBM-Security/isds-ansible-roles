@@ -109,7 +109,7 @@ def main():
         try:
             basestring
         except NameError:
-            basestring = str
+            basestring = (str, bytes)
         try:
             for key, value in module.params['isdsapi'].iteritems():
                 if isinstance(value, basestring):
