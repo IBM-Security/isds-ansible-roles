@@ -5,7 +5,10 @@ import logging.config
 import sys
 import importlib
 from ansible.module_utils.basic import AnsibleModule
-from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import datetime
 
 from ibmsecurity.appliance.isdsappliance import ISDSAppliance
@@ -103,11 +106,22 @@ def main():
     if module.check_mode is True:
         options = options + ', check_mode=True'
     if isinstance(module.params['isdsapi'], dict):
-        for key, value in module.params['isdsapi'].iteritems():
-            if isinstance(value, basestring):
-                options = options + ', ' + key + '="' + value + '"'
-            else:
-                options = options + ', ' + key + '=' + str(value)
+        try:
+            basestring
+        except NameError:
+            basestring = (str, bytes)
+        try:
+            for key, value in module.params['isdsapi'].iteritems():
+                if isinstance(value, basestring):
+                    options = options + ', ' + key + '="' + value + '"'
+                else:
+                    options = options + ', ' + key + '=' + str(value)
+        except AttributeError:
+            for key, value in module.params['isdsapi'].items():
+                if isinstance(value, basestring):
+                    options = options + ', ' + key + '="' + value + '"'
+                else:
+                    options = options + ', ' + key + '=' + str(value)
     module.debug('Option to be passed to action: ' + options)
 
     # Dynamically process the action to be invoked
